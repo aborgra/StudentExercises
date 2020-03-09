@@ -139,6 +139,14 @@ namespace StudentExercises {
             Console.WriteLine ($"{orderedStudentsByExercisesCount.FirstName} {orderedStudentsByExercisesCount.LastName}");
             Console.WriteLine ($"________________________");
 
+            // Easier for printing to the console
+            var groups = students.GroupBy (student => student.Cohort);
+            Console.WriteLine ("Students in each cohort:");
+            foreach (var group in groups) {
+                Console.WriteLine ($"{group.Count()} in {group.Key}");
+            }
+
+            // Better for storing info to be used later
             var studentsPerCohort = students.GroupBy (student => student.Cohort).Select (group => {
                 return new CohortReport {
                 StudentCount = group.Count (),
